@@ -57,7 +57,7 @@ def home(name='茫茫大海'):
         name = deviceName[currentNode]
 
     # 搜尋目錄 ./ 及 ./views 下 gatewap.tpl
-    # tpl 下的 {{變數}} 會被相對應的 變數 取代
+    # tpl 檔案裡的 {{變數}} 會被相對應的 變數 取代
     # location=name 是指 tpl 裡的 {{location}} 會被 name 取代
     # 傳入的 name 如果含有 html tag 會被 escape
     # 如果不要 escape 請在前面加上驚嘆號 {{!location}}
