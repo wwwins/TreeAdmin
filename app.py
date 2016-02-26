@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from bottle import route, run, template
+from bottle import route, run, template, get, post, request
 from random import randint
 from netcat import netcat
 import socket, errno
@@ -62,5 +62,22 @@ def home(name='茫茫大海'):
     # 傳入的 name 如果含有 html tag 會被 escape
     # 如果不要 escape 請在前面加上驚嘆號 {{!location}}
     return template('gateway',deviceName=deviceName,location=name,passData=passData)
+
+# http://localhost/admin/login?user=admin&pwd=1234
+@route('/admin/login')
+def login():
+    r = "user:" + request.query.user + " pwd:" +request.query.pwd
+    return r
+
+# http://localhost/admin/list?pageId=3&title=testing
+@get('/admin/list')
+def list():
+    r = "pageId:" + request.GET.pageId + " title:" +request.GET.title
+    return r
+
+@post('/admin/post')
+def post():
+    r = "name:" + request.POST.name + " title:" +request.POST.title
+    return r
 
 run(host='localhost', port=8000)
